@@ -11,7 +11,6 @@ import java.awt.*; // este proporciona las herramientas necesarias para crear in
 import java.awt.event.ActionEvent; // este se utliza para notificar cuando ocurre una accion signficativa, en un componente, como boton presionado o elemento de menu seleccionado 
 import java.awt.event.ActionListener; // esta libreria permite recibir eventos de accion, este invoca cuando cuando ocurre una accion
 import java.util.Calendar;
-import java.awt.event.ComponentAdapter; // este es un componente abstracto, ayuda a poner la pantalla completa
 import java.awt.event.ComponentEvent; // se utiliza para notificar cambios en la posición, tamaño o visibilidad de un componente en una interfaz gráfica de usuari
 
 /**
@@ -25,6 +24,7 @@ public class PantallaInicial {
      */
     public static void main(String[] args) {
 
+        // titulo del frame
         JFrame frame = new JFrame("Pantalla Inicial");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(426, 256);
@@ -35,9 +35,9 @@ public class PantallaInicial {
 
         // Crear el JLabel con la imagen como fondo
         JLabel labelFondo = new JLabel(imagenFondo);
-        labelFondo.setLayout(new BorderLayout()); // Establecer layout para añadir paneles sobre la imagen
+        labelFondo.setLayout(new BorderLayout()); // aqui se establece layout para añadir paneles sobre la imagen
 
-        frame.setContentPane(labelFondo); // Establecer el label con la imagen como contenido principal del frame
+        frame.setContentPane(labelFondo); // aqui se establece el label con la imagen como contenido principal del frame
 
         JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false); // Hacer el panel transparente para ver la imagen de fondo
@@ -77,17 +77,17 @@ public class PantallaInicial {
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Añadir los botones al panel con espacio
-        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); // Añadir espacio antes del primer botón
+        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); // Añadir espacio antes del primer boton
         panelBotones.add(botonLogIn);
-        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); // Añadir espacio entre botones
+        panelBotones.add(Box.createRigidArea(new Dimension(0, 20)));
         panelBotones.add(botonCrearCuenta);
-        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); // Añadir espacio entre botones
+        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); 
         panelBotones.add(botonSalir);
 
-        // Añadir el panel de botones al fondo
+        // Se Añadw el panel de botones al fondo
         labelFondo.add(panelBotones, BorderLayout.CENTER); // Colocar el panel de botones en el centro
 
-        // Hacer visible el frame
+        // este ayuda a hacer visible el frame
         frame.setVisible(true);
     }
 }
