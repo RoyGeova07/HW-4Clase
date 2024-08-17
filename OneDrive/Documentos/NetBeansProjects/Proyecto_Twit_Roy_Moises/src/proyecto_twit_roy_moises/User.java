@@ -28,7 +28,7 @@ public class User {
         this.contrasena = contrasena;
         this.fechaEntrada = new Date(); // Se toma la fecha actual
         this.edad = edad;
-        this.estadoActivo = true; // Por defecto, la cuenta está activa
+        this.estadoActivo = true; // Por defecto, la cuenta esta activa
     }
 
     // Getters
