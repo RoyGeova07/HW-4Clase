@@ -5,7 +5,7 @@
 package proyecto_twit_roy_moises;
 
 //  sirve para la revision que gestione la lista de usuarios
-// esta clase se encargará de almacenar y verificar los nombres de usuario y la constrasena.
+// esta clase se encargara de almacenar y verificar los nombres de usuario y la constrasena.
 /**
  *
  * @author royum
