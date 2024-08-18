@@ -56,12 +56,31 @@ public class CrearCuenta {
         registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createVerticalStrut(10)); // Espacio vertical
         panel.add(registerButton);
+        
+        JButton RegresarInicio = new JButton("Regresar Inicio");
+        RegresarInicio.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(RegresarInicio);
+        
+        panel.add(Box.createVerticalStrut(0));
+        panel.add(RegresarInicio);
 
         // Accion del boton Registrar
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jButton1ActionPerformed();
+            }
+        });
+        
+         // Accion del boton Regresar Inicio
+        RegresarInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                frame.dispose(); // Cerrar el frame de Login
+                new PantallaInicial(null); // Volver a la pantalla inicial
+                
             }
         });
 
