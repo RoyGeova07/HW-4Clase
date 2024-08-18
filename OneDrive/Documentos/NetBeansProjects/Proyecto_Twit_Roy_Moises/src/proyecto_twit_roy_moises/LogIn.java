@@ -59,7 +59,7 @@ public class LogIn {
         panel.add(Box.createVerticalStrut(20)); // Espacio vertical antes de los botones
         panel.add(buttonPanel);
 
-        // Acción del botón Login
+        // Acción del boton Login
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,7 +67,7 @@ public class LogIn {
             }
         });
 
-        // Acción del botón Regresar
+        // Acción del boton Regresar
         regresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +105,7 @@ public class LogIn {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
 
-        // Verificación de las credenciales
+        // Verificacion de las credenciales
         if (UsuarioManager.autenticar(username, password)) {
             JOptionPane.showMessageDialog(null, "Login exitoso. Bienvenido!", "Exito", JOptionPane.INFORMATION_MESSAGE);
             frame.dispose(); // Cerrar el frame de Login

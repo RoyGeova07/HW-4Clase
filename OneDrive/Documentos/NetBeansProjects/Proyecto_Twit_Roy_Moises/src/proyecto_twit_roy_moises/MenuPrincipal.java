@@ -63,7 +63,7 @@ public class MenuPrincipal {
         mainPanel.add(navPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        // Configuracion de los botones de navegación
+        // Configuracion de los botones de navegacion
         timelineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,27 +110,27 @@ public class MenuPrincipal {
     }
 
     private void mostrarTimeline() {
-        // Implementar funcionalidad para mostrar 
+        // aqui ira funcionalidad para mostrar 
        
     }
 
     private void mandarTweet() {
-        // Implementar funcionalidad para mandar un tweet
+        // aqui ira funcionalidad para mandar un tweet
       
     }
 
     private void mostrarInteracciones() {
-        // Implementar funcionalidad para mostrar interacciones
+        // aqui ira  funcionalidad para mostrar interacciones
      
     }
 
     private void editarPerfil() {
-        // Implementar funcionalidad para editar el perfil
+        // aqui ira funcionalidad para editar el perfil
         
     }
 
     private void buscarHashtags() {
-        // Implementar funcionalidad para buscar hashtags
+        // aqui ira funcionalidad para buscar hashtags
         
     }
 

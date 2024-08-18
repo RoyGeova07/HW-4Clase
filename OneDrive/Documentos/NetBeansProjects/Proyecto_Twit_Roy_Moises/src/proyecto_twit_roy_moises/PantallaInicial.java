@@ -34,12 +34,12 @@ public class PantallaInicial {
         frame.setSize(500, 300);
         frame.setLocationRelativeTo(null); // Centrar el frame en pantalla
 
-        // Cargar la imagen desde el paquete 'imagenes'
+        // Cargar la imagen desde el paquete imagenes
         ImageIcon imagenFondo = new ImageIcon(PantallaInicial.class.getResource("/imagenes/Menu Inicio.jpg"));
 
         // Crear el JLabel con la imagen como fondo
         JLabel labelFondo = new JLabel(imagenFondo);
-        labelFondo.setLayout(new BorderLayout()); // aquí se establece layout para añadir paneles sobre la imagen
+        labelFondo.setLayout(new BorderLayout()); // aqui se establece layout para añadir paneles sobre la imagen
 
         frame.setContentPane(labelFondo); // aquí se establece el label con la imagen como contenido principal del frame
 
