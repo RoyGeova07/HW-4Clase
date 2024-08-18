@@ -20,7 +20,7 @@ public class UsuarioManager {
     // Agrega un nuevo usuario con una contraseña y las guarda
     public static boolean agregarUsuario(String username, String password) {
         if (contador >= MAX_USUARIOS) {
-            return false; // No hay espacio para más usuarios
+            return false; // No hay espacio para mas usuarios
         }
         for (int exis = 0; exis < contador; exis++) {
             if (usernames[exis] != null && usernames[exis].equals(username)) {
