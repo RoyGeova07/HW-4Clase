@@ -10,8 +10,6 @@ import javax.swing.*; // libreria de swing
 import java.awt.*; // este proporciona las herramientas necesarias para crear interfaces graficas, dibujar graficos y manejar eventos en aplicaciones java
 import java.awt.event.ActionEvent; // este se utliza para notificar cuando ocurre una accion signficativa, en un componente, como boton presionado o elemento de menu seleccionado 
 import java.awt.event.ActionListener; // esta libreria permite recibir eventos de accion, este invoca cuando cuando ocurre una accion
-import java.util.Calendar;
-import java.awt.event.ComponentEvent; // se utiliza para notificar cambios en la posición, tamaño o visibilidad de un componente en una interfaz gráfica de usuari
 
 /**
  *
@@ -19,25 +17,31 @@ import java.awt.event.ComponentEvent; // se utiliza para notificar cambios en la
  */
 public class PantallaInicial {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    private String username;
 
-        // titulo del frame
+    public PantallaInicial(String username) {
+        this.username = username;
+        initUI();
+    }
+
+    public static void main(String[] args) {
+        new PantallaInicial(null);
+    }
+
+    private void initUI() {
         JFrame frame = new JFrame("Pantalla Inicial");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(426, 256);
+        frame.setSize(500, 300);
         frame.setLocationRelativeTo(null); // Centrar el frame en pantalla
 
         // Cargar la imagen desde el paquete 'imagenes'
-        ImageIcon imagenFondo = new ImageIcon(PantallaInicial.class.getResource("/imagenes/Menu Inicio.png"));
+        ImageIcon imagenFondo = new ImageIcon(PantallaInicial.class.getResource("/imagenes/Menu Inicio.jpg"));
 
         // Crear el JLabel con la imagen como fondo
         JLabel labelFondo = new JLabel(imagenFondo);
-        labelFondo.setLayout(new BorderLayout()); // aqui se establece layout para añadir paneles sobre la imagen
+        labelFondo.setLayout(new BorderLayout()); // aquí se establece layout para añadir paneles sobre la imagen
 
-        frame.setContentPane(labelFondo); // aqui se establece el label con la imagen como contenido principal del frame
+        frame.setContentPane(labelFondo); // aquí se establece el label con la imagen como contenido principal del frame
 
         JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false); // Hacer el panel transparente para ver la imagen de fondo
@@ -48,20 +52,26 @@ public class PantallaInicial {
         JButton botonCrearCuenta = new JButton("CREAR CUENTA");
         JButton botonSalir = new JButton("SALIR DEL SISTEMA");
 
+        botonLogIn.setBackground(new Color(0, 48, 143));
+        botonLogIn.setForeground(Color.white);
+        botonCrearCuenta.setBackground(new Color(85, 153, 0));
+        botonCrearCuenta.setForeground(Color.white);
+        botonSalir.setBackground(Color.red);
+        botonSalir.setForeground(Color.white);
+
         // Agregar acciones a los botones
         botonLogIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-            // agregar funcion del boton
-                
+                frame.dispose();
+                new LogIn();
+
             }
         });
 
         botonCrearCuenta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-                // agregar funcion del boton
-                
+                frame.dispose(); // Cierra el frame de pantalla inicial.
+                new CrearCuenta(); // Abre la ventana para crear una cuenta.
             }
         });
 
@@ -81,13 +91,14 @@ public class PantallaInicial {
         panelBotones.add(botonLogIn);
         panelBotones.add(Box.createRigidArea(new Dimension(0, 20)));
         panelBotones.add(botonCrearCuenta);
-        panelBotones.add(Box.createRigidArea(new Dimension(0, 20))); 
+        panelBotones.add(Box.createRigidArea(new Dimension(0, 20)));
         panelBotones.add(botonSalir);
 
-        // Se Añadw el panel de botones al fondo
+        // Añadir el panel de botones al fondo
         labelFondo.add(panelBotones, BorderLayout.CENTER); // Colocar el panel de botones en el centro
 
-        // este ayuda a hacer visible el frame
+        // Mostrar el frame
         frame.setVisible(true);
+
     }
 }

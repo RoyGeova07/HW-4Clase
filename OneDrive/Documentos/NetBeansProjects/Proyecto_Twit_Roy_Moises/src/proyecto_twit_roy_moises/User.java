@@ -11,14 +11,16 @@ import java.util.Date;
  * @author royum
  */
 public class User {
+    
+    CrearCuenta crear;
 
-    private String nombre;
-    private char genero;
-    private String nombreUsuario;
-    private String contrasena;
-    private Date fechaEntrada;
-    private int edad;
-    private boolean estadoActivo;
+    public String nombre;
+    public char genero;
+    public String nombreUsuario;
+    public String contrasena;
+    public Date fechaEntrada;
+    public int edad;
+    public boolean estadoActivo;
 
     // Constructor
     public User(String nombre, char genero, String nombreUsuario, String contrasena, int edad) {
