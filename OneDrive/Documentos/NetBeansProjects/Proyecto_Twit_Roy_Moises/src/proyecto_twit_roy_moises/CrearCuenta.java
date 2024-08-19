@@ -135,6 +135,13 @@ public class CrearCuenta {
             JOptionPane.showMessageDialog(null, "La edad debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if(edad < 1 || edad>  90){
+            
+            JOptionPane.showMessageDialog(null, "La edad tiene que ser acorde limite de 90.", "Error",JOptionPane.ERROR_MESSAGE);
+            return; // este return hace que no se registre con exito si se excede numero
+            
+        }
 
         // Verificacion del nombre de usuario
         if (!UsuarioManager.usuarioExiste(nombreUsuario)) {
