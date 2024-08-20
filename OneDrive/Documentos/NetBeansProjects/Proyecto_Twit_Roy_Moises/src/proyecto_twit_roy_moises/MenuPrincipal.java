@@ -20,8 +20,8 @@ public class MenuPrincipal {
 
     private JFrame frame;
     private JTextArea tweetArea;
-    private JLabel charCountLabel;
-    private JPanel timelinePanel;
+    private JLabel letrasContadasLabel;
+    private JPanel espacioPanel;
     private Twits twits;
     private String currentUser;
 
@@ -74,8 +74,8 @@ public class MenuPrincipal {
         tweetPanel.add(new JScrollPane(tweetArea), BorderLayout.CENTER);
 
         // Contador de caracteres
-        charCountLabel = new JLabel("0/140 caracteres");
-        tweetPanel.add(charCountLabel, BorderLayout.SOUTH);
+        letrasContadasLabel = new JLabel("0/140 caracteres");
+        tweetPanel.add(letrasContadasLabel, BorderLayout.SOUTH);
 
         // Panel para los botones
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -86,9 +86,9 @@ public class MenuPrincipal {
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Panel para mostrar los tweets
-        timelinePanel = new JPanel();
-        timelinePanel.setLayout(new BoxLayout(timelinePanel, BoxLayout.Y_AXIS));
-        JScrollPane timelineScrollPane = new JScrollPane(timelinePanel);
+        espacioPanel = new JPanel();
+        espacioPanel.setLayout(new BoxLayout(espacioPanel, BoxLayout.Y_AXIS));
+        JScrollPane timelineScrollPane = new JScrollPane(espacioPanel);
         contentPanel.add(timelineScrollPane, BorderLayout.CENTER);
 
         // Añadir paneles al panel principal
@@ -119,7 +119,7 @@ public class MenuPrincipal {
                     JOptionPane.showMessageDialog(frame, "Tweet publicado exitosamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
                     actualizarTimeline();
                     tweetArea.setText("");
-                    charCountLabel.setText("0/140 caracteres");
+                    letrasContadasLabel.setText("0/140 caracteres");
                 } else if (contenido.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "El tweet no puede estar vacio.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -132,11 +132,11 @@ public class MenuPrincipal {
             @Override
             public void keyReleased(KeyEvent e) {
                 int charCount = tweetArea.getText().length();
-                charCountLabel.setText(charCount + "/140 caracteres");
+                letrasContadasLabel.setText(charCount + "/140 caracteres");
                 if (charCount > 140) {
-                    charCountLabel.setForeground(Color.RED);
+                    letrasContadasLabel.setForeground(Color.RED);
                 } else {
-                    charCountLabel.setForeground(Color.BLACK);
+                    letrasContadasLabel.setForeground(Color.BLACK);
                 }
             }
         });
@@ -160,17 +160,17 @@ public class MenuPrincipal {
     }
 
     private void actualizarTimeline() {
-        timelinePanel.removeAll();
+        espacioPanel.removeAll();
         for (int i = 0; i < twits.getNumeroTwits(); i++) {
             Twit twit = twits.getTwits()[i];
             JLabel tweetLabel = new JLabel(twit.getUsername() + " escribio: \n“"
                     + twit.getContenido() + "”\n el " + twit.getFechapublicacion());
             tweetLabel.setForeground(new Color(30, 144, 255));
             tweetLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            timelinePanel.add(tweetLabel);
+            espacioPanel.add(tweetLabel);
         }
-        timelinePanel.revalidate();
-        timelinePanel.repaint();
+        espacioPanel.revalidate();
+        espacioPanel.repaint();
     }
 
     private void cerrarSesion() {
