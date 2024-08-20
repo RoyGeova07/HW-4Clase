@@ -57,13 +57,18 @@ public class CrearCuenta {
         panel.add(Box.createVerticalStrut(10)); // Espacio vertical
         panel.add(registerButton);
         
-        JButton RegresarInicio = new JButton("Regresar Inicio");
-        RegresarInicio.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(RegresarInicio);
+        JButton regresar = new JButton ("Regresar Log");
+        regresar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(15));
+        panel.add(regresar);
         
-        panel.add(Box.createVerticalStrut(0));
-        panel.add(RegresarInicio);
+        regresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LogIn();
+                frame.dispose();
+            }
+        });
 
         // Accion del boton Registrar
         registerButton.addActionListener(new ActionListener() {
@@ -73,16 +78,7 @@ public class CrearCuenta {
             }
         });
         
-         // Accion del boton Regresar Inicio
-        RegresarInicio.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                frame.dispose(); // Cerrar el frame de Login
-                new PantallaInicial(null); // Volver a la pantalla inicial
-                
-            }
-        });
+
 
         frame.setVisible(true);
     }
@@ -149,7 +145,7 @@ public class CrearCuenta {
             if (UsuarioManager.agregarUsuario(nombreUsuario,contrasena)) {
                 JOptionPane.showMessageDialog(null, "Usuario registrado con exito.", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 frame.dispose(); // Cerrar el frame de CrearCuenta
-                new PantallaInicial(nombreUsuario); // Reabrir el menu inicial con el username registrado
+                new LogIn(); 
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario no pudo ser registrado. Intentalo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }

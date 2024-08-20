@@ -15,11 +15,15 @@ import java.awt.event.ActionListener;
  */
 public class LogIn {
 
-    PantallaInicial ptan;
-
-    private JFrame frame;
+   UsuarioManager usu; 
+    
+   private JFrame frame;
     private JTextField usernameField;
     private JPasswordField passwordField;
+
+    public static void main(String[] args) {
+        new LogIn();
+    }
 
     public LogIn() {
         initUI();
@@ -27,52 +31,88 @@ public class LogIn {
 
     private void initUI() {
         frame = new JFrame("Login");
-        frame.setSize(500, 300);
+        frame.setSize(700, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setLayout(new BorderLayout());
 
-        // Panel para contener los campos de entrada
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.white);
-        frame.add(panel);
+        // Panel principal
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(Color.WHITE);
+        frame.add(mainPanel);
 
-        // Configuracion de las etiquetas y campos de entrada
-        panel.add(crearCampo("Username:", usernameField = new JTextField()));
-        panel.add(crearCampo("Contraseña:", passwordField = new JPasswordField()));
+        // Cargar la imagen desde el paquete imagenes
+        ImageIcon imagenFondo = new ImageIcon(LogIn.class.getResource("/imagenes/mini.png"));
+        JLabel imageLabel = new JLabel(imagenFondo);
+        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        mainPanel.add(imageLabel, BorderLayout.WEST);
+
+        // Panel de campos y botones
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+        inputPanel.setBackground(Color.WHITE);
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.add(inputPanel, BorderLayout.CENTER);
+
+        // Mensaje de bienvenida
+        JLabel welcomeLabel = new JLabel("Bienvenido a tu red social favorita");
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        welcomeLabel.setForeground(new Color(30, 144, 255));
+        welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        inputPanel.add(welcomeLabel);
+        inputPanel.add(Box.createVerticalStrut(15)); // Espacio vertical
+
+        // Configuración de los campos de entrada
+        inputPanel.add(crearCampo("Username:", usernameField = new JTextField()));
+        inputPanel.add(crearCampo("Contraseña:", passwordField = new JPasswordField()));
+
+     
+        JLabel noAccountLabel = new JLabel("¿No tienes cuenta?");
+        noAccountLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        noAccountLabel.setForeground(Color.GRAY);
+        noAccountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        inputPanel.add(Box.createVerticalStrut(10)); // Espacio vertical
+        inputPanel.add(noAccountLabel);
+
+        // Botón de "Crear cuenta"
+        JButton CrearCuentaButton = new JButton("¡Crea tu cuenta!");
+        CrearCuentaButton.setForeground(new Color(30, 144, 255));
+        CrearCuentaButton.setBackground(Color.WHITE);
+        CrearCuentaButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        CrearCuentaButton.setFont(new Font("Roboto", Font.BOLD, 14));
+        CrearCuentaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        inputPanel.add(CrearCuentaButton);
 
         // Panel para los botones
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        buttonPanel.setBackground(Color.white);
+        buttonPanel.setBackground(Color.WHITE);
 
         JButton loginButton = new JButton("LOG IN");
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setBackground(new Color(30, 144, 255));
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.add(Box.createVerticalStrut(10)); // Espacio vertical
         buttonPanel.add(loginButton);
 
-        JButton regresarButton = new JButton("Regresar Inicio");
-        regresarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(Box.createVerticalStrut(10)); // Espacio vertical
-        buttonPanel.add(regresarButton);
+        inputPanel.add(Box.createVerticalStrut(20)); // Espacio vertical antes de los botones
+        inputPanel.add(buttonPanel);
 
-        panel.add(Box.createVerticalStrut(20)); // Espacio vertical antes de los botones
-        panel.add(buttonPanel);
+        // Acción del botón CrearCuenta
+        CrearCuentaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // Cerrar el frame de Login
+                new CrearCuenta(); // Volver a la pantalla inicial
+            }
+        });
 
-        // Acción del boton Login
+        // Acción del botón Login
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Identificacion();
-            }
-        });
-
-        // Acción del boton Regresar
-        regresarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // Cerrar el frame de Login
-                new PantallaInicial(null); // Volver a la pantalla inicial
             }
         });
 
@@ -81,18 +121,18 @@ public class LogIn {
 
     private JPanel crearCampo(String labelText, JComponent field) {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
-        panel.setBackground(Color.white);
+        panel.setBackground(Color.WHITE);
         JLabel label = new JLabel(labelText);
-        label.setForeground(Color.black);
+        label.setForeground(Color.BLACK);
         label.setPreferredSize(new Dimension(150, 30));
         label.setFont(new Font("Arial", Font.PLAIN, 14));
         panel.add(label, BorderLayout.WEST);
 
         field.setPreferredSize(new Dimension(150, 30));
         field.setFont(new Font("Arial", Font.PLAIN, 14));
-        field.setForeground(Color.black);
-        field.setBackground(Color.white);
-        field.setBorder(BorderFactory.createLineBorder(new Color(30, 144, 255), 2)); // Borde azul claro
+        field.setForeground(Color.BLACK);
+        field.setBackground(Color.WHITE);
+        field.setBorder(BorderFactory.createLineBorder(new Color(30, 144, 255), 2)); // Bor de azul claro
         panel.add(field, BorderLayout.CENTER);
 
         panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Espacio alrededor
@@ -100,16 +140,15 @@ public class LogIn {
         return panel;
     }
 
-    // este metodo sirve para identificar si el username y la contrasena estan correctas
     private void Identificacion() {
         String username = usernameField.getText().trim();
         String password = new String(passwordField.getPassword()).trim();
 
-        // Verificacion de las credenciales
+        // Verificación de las credenciales
         if (UsuarioManager.autenticar(username, password)) {
-            JOptionPane.showMessageDialog(null, "Login exitoso. Bienvenido!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Login exitoso. ¡Bienvenido!", "Exito", JOptionPane.INFORMATION_MESSAGE);
             frame.dispose(); // Cerrar el frame de Login
-            new MenuPrincipal();
+            new MenuPrincipal(username);
         } else {
             int respuesta = JOptionPane.showConfirmDialog(
                     null,

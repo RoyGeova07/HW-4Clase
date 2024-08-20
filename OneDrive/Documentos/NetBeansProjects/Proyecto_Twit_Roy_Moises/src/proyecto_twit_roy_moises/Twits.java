@@ -31,7 +31,7 @@ public class Twits {
             if(nuevoTwit.isContenidovalido()){
                 twits[numeroTwits] = nuevoTwit;
                 numeroTwits++;
-                System.out.println("Twit publicado exitsamente.");
+               
             } else {
                 System.out.println(nuevoTwit.getContenido()); // aqui muestra el mensaje de un error
             }
