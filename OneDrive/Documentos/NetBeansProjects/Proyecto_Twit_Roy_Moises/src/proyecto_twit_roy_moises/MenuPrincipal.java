@@ -23,10 +23,10 @@ public class MenuPrincipal {
     private JLabel letrasContadasLabel;
     private JPanel espacioPanel;
     private Twits twits;
-    private String currentUser;
+    private String UsuarioActual;
 
-    public MenuPrincipal(String currentUser) {
-        this.currentUser = currentUser;
+    public MenuPrincipal(String UsuarioActual) {
+        this.UsuarioActual = UsuarioActual;
         twits = new Twits(); // Inicializamos la clase Twits
         initUI();
     }
@@ -51,7 +51,7 @@ public class MenuPrincipal {
         JButton interactionsButton = new JButton("Interacciones");
         JButton editProfileButton = new JButton("Editar Perfil");
         JButton searchButton = new JButton("Buscar Hashtags");
-        JButton logoutButton = new JButton("Cerrar Sesión");
+        JButton logoutButton = new JButton("Cerrar Sesion");
 
         // Añadir botones al panel de navegación
         navPanel.add(timelineButton);
@@ -68,19 +68,27 @@ public class MenuPrincipal {
         // Panel para escribir tweets
         JPanel tweetPanel = new JPanel(new BorderLayout());
         tweetPanel.setBorder(BorderFactory.createTitledBorder("¿En que estas pensando?"));
-        tweetArea = new JTextArea(3, 30); // Ajusta el tamaño del área de texto
+        tweetArea = new JTextArea(3, 25); // Ajusta el tamaño del área de texto
         tweetArea.setLineWrap(true);
         tweetArea.setWrapStyleWord(true);
         tweetPanel.add(new JScrollPane(tweetArea), BorderLayout.CENTER);
 
         // Contador de caracteres
+        JPanel bottomPanel = new JPanel(new BorderLayout());
         letrasContadasLabel = new JLabel("0/140 caracteres");
         tweetPanel.add(letrasContadasLabel, BorderLayout.SOUTH);
+        bottomPanel.add(letrasContadasLabel, BorderLayout.WEST);
 
         // Panel para los botones
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton publishButton = new JButton("Publicar");
         buttonPanel.add(publishButton);
+
+        bottomPanel.add(publishButton, BorderLayout.EAST);
+
+        tweetPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        contentPanel.add(tweetPanel, BorderLayout.NORTH);
 
         contentPanel.add(tweetPanel, BorderLayout.NORTH);
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -88,6 +96,7 @@ public class MenuPrincipal {
         // Panel para mostrar los tweets
         espacioPanel = new JPanel();
         espacioPanel.setLayout(new BoxLayout(espacioPanel, BoxLayout.Y_AXIS));
+        espacioPanel.setBorder(BorderFactory.createLineBorder(new Color(30, 144, 255), 2));  // borde azulito
         JScrollPane timelineScrollPane = new JScrollPane(espacioPanel);
         contentPanel.add(timelineScrollPane, BorderLayout.CENTER);
 
@@ -115,7 +124,7 @@ public class MenuPrincipal {
             public void actionPerformed(ActionEvent e) {
                 String contenido = tweetArea.getText().trim();
                 if (!contenido.isEmpty() && contenido.length() <= 140) {
-                    twits.Publicartwit(currentUser, contenido); // Se usa el nombre del usuario actual
+                    twits.Publicartwit(UsuarioActual, contenido); // Se usa el nombre del usuario actual
                     JOptionPane.showMessageDialog(frame, "Tweet publicado exitosamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
                     actualizarTimeline();
                     tweetArea.setText("");
@@ -131,9 +140,9 @@ public class MenuPrincipal {
         tweetArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                int charCount = tweetArea.getText().length();
-                letrasContadasLabel.setText(charCount + "/140 caracteres");
-                if (charCount > 140) {
+                int contadorLetras = tweetArea.getText().length();
+                letrasContadasLabel.setText(contadorLetras + "/140 caracteres");
+                if (contadorLetras > 140) {
                     letrasContadasLabel.setForeground(Color.RED);
                 } else {
                     letrasContadasLabel.setForeground(Color.BLACK);
@@ -161,11 +170,11 @@ public class MenuPrincipal {
 
     private void actualizarTimeline() {
         espacioPanel.removeAll();
-        for (int i = 0; i < twits.getNumeroTwits(); i++) {
-            Twit twit = twits.getTwits()[i];
+        for (int twi = 0; twi < twits.getNumeroTwits(); twi++) {
+            Twit twit = twits.getTwits()[twi];
             JLabel tweetLabel = new JLabel(twit.getUsername() + " escribio: \n“"
                     + twit.getContenido() + "”\n el " + twit.getFechapublicacion());
-            tweetLabel.setForeground(new Color(30, 144, 255));
+            tweetLabel.setForeground(Color.black); // color azulito letras
             tweetLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             espacioPanel.add(tweetLabel);
         }

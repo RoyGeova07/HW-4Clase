@@ -15,9 +15,9 @@ import java.awt.event.ActionListener;
  */
 public class LogIn {
 
-   UsuarioManager usu; 
-    
-   private JFrame frame;
+    UsuarioManager usu;
+
+    private JFrame frame;
     private JTextField usernameField;
     private JPasswordField passwordField;
 
@@ -66,7 +66,6 @@ public class LogIn {
         inputPanel.add(crearCampo("Username:", usernameField = new JTextField()));
         inputPanel.add(crearCampo("Contraseña:", passwordField = new JPasswordField()));
 
-     
         JLabel noAccountLabel = new JLabel("¿No tienes cuenta?");
         noAccountLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         noAccountLabel.setForeground(Color.GRAY);
@@ -75,7 +74,7 @@ public class LogIn {
         inputPanel.add(noAccountLabel);
 
         // Botón de "Crear cuenta"
-        JButton CrearCuentaButton = new JButton("¡Crea tu cuenta!");
+        JButton CrearCuentaButton = new JButton("¡Click aqui, Crea tu cuenta!");
         CrearCuentaButton.setForeground(new Color(30, 144, 255));
         CrearCuentaButton.setBackground(Color.WHITE);
         CrearCuentaButton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
