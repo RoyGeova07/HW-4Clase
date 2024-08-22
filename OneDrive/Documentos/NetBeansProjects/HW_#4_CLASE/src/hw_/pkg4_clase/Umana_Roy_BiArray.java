@@ -24,6 +24,8 @@ public class Umana_Roy_BiArray {
         int dimensiones = 0;
         int sumaDiagonalPrincipal = 0;
         int sumaDigonalSecundaria = 0;
+        String resultadoPrimario = "";
+        String resultadosecundario = "";
 
         System.out.println("Ingrese la cantida de dimensiones NxN: ");
         dimensiones = lea.nextInt();
@@ -45,15 +47,20 @@ public class Umana_Roy_BiArray {
 
         for (int DiagonalPrincipal = 0; DiagonalPrincipal < dimensiones; DiagonalPrincipal++) {
             sumaDiagonalPrincipal += matriz[DiagonalPrincipal][DiagonalPrincipal];
+            resultadoPrimario += matriz[DiagonalPrincipal][DiagonalPrincipal] + " ";
         }
 
         for (int DiagonalSecundario = 0; DiagonalSecundario < dimensiones; DiagonalSecundario++) {
             sumaDigonalSecundaria += matriz[DiagonalSecundario][dimensiones - DiagonalSecundario - 1];
+            resultadosecundario += matriz[DiagonalSecundario][dimensiones - DiagonalSecundario - 1] + " ";
         }
 
         System.out.println("****Resultado****");
         System.out.println("Suma Principal: " + sumaDiagonalPrincipal);
         System.out.println("Suma secundaria: " + sumaDigonalSecundaria);
+        System.out.println(resultadoPrimario + " = " + sumaDiagonalPrincipal);
+        System.out.println(resultadosecundario + " = " + sumaDigonalSecundaria);
+
     }
 
 }
